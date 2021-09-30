@@ -45,14 +45,7 @@ const ExceltoJSON = async (req, res) => {
                 let attended = contact["El agente respondió el"];
                 let last_message = contact["Último mensaje publicado el"];
                 let agent_closed = contact["El agente cerró la conversación el"];
-                let waiting_answer = contact["Esperando a que el agente responda"];
-                let response_time = contact["Tiempo de respuesta del agente (sin la actividad del bot de chat)"];
-                let duration_close = contact["Duración antes del cierre del agente"];
-                let convo_duration = contact["Duración de la conversación"];
-                let init_response_time = contact["Tiempo de respuesta inicial"];
-                let total_response_time = contact["Tiempo de respuesta total"];
                 let avg_response_time = contact["Tiempo de respuesta promedio"];
-                let max_response_time = contact["Tiempo de respuesta máximo"];
 
                 db.query('INSERT INTO contacts SET?', {
                     id,
@@ -69,14 +62,7 @@ const ExceltoJSON = async (req, res) => {
                     attended,
                     last_message,
                     agent_closed,
-                    waiting_answer,
-                    response_time,
-                    duration_close,
-                    convo_duration,
-                    init_response_time,
-                    total_response_time,
-                    avg_response_time,
-                    max_response_time
+                    avg_response_time
                 }, (err) => {
                     if (err) throw err;
                 });

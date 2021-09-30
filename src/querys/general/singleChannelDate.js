@@ -1,4 +1,4 @@
-const db = require('../config/dbConnection');
+const db = require('../../config/dbConnection');
 
 const get = async (req, res) => {
     let channel = req.query.channel;
@@ -10,7 +10,7 @@ const get = async (req, res) => {
         SET @channel = ?;
         SET @initDate = ?;
         SET @endDate = ?;
-        CALL singleChannelByDate(@channel,@initDate,@endDate)
+        CALL singleChannelDate(@channel,@initDate,@endDate)
         `; 
         const doQuery = (query) => {
             return new Promise((resolve, reject) => {

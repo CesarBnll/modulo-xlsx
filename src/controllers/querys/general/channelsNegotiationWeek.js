@@ -1,9 +1,9 @@
-const db = require('../config/dbConnection');
+const db = require('../../../config/dbConnection');
 
 const get = async (req, res) => {
     try {
         const store = `
-        CALL getEmployees
+        CALL channelsNegotiationWeek
         `; 
         const doQuery = (query) => {
             return new Promise((resolve, reject) => {
@@ -14,11 +14,11 @@ const get = async (req, res) => {
             }); 
         }    
         const queryResult = await doQuery();
-        res.json(queryResult);
+        let index = queryResult.length - 2;
+        res.json(queryResult[index]);
     } catch (error) {
         throw error;
     }
-    return;
 }
 
 module.exports = { get };

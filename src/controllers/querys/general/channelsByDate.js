@@ -1,14 +1,13 @@
-const db = require('../config/dbConnection');
+const db = require('../../../config/dbConnection');
 
 const get = async (req, res) => {
     let initDate = req.query.initDate;
     let endDate = req.query.endDate;
-    console.log(initDate);
     try {
         const store = `
         SET @initDate = ?;
         SET @endDate = ?;
-        CALL channelsByDate(@initDate,@endDate)
+        CALL channelsByDate(@initDate, @endDate)
         `; 
         const doQuery = (query) => {
             return new Promise((resolve, reject) => {
@@ -19,11 +18,11 @@ const get = async (req, res) => {
             }); 
         }    
         const queryResult = await doQuery();
-        res.json(queryResult);
+        let index = queryResult.length - 2;
+        res.json(queryResult[index]);
     } catch (error) {
         throw error;
     }
-    return;
 }
 
 module.exports = { get };

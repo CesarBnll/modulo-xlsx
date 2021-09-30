@@ -1,11 +1,11 @@
-const db = require('../config/dbConnection');
+const db = require('../../config/dbConnection');
 
 const get = async (req, res) => {
     let channel = req.query.channel;
     try {
         const store = `
         SET @channel = ?;
-        CALL singleChannelMonth(@channel)
+        CALL singleChannelWeek(@channel)
         `; 
         const doQuery = (query) => {
             return new Promise((resolve, reject) => {
